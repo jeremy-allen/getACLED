@@ -18,7 +18,7 @@ Required packages: jsonlite, data.table, lubridate, stringr
 
 ### An example work flow:
 
-```
+```r
 source("acled_api_pull.R")
 
 # make a list of countries you want data about
