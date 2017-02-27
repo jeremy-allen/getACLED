@@ -38,8 +38,6 @@ lcb <- rbindlist(lcb_data_list)
 rm(lcb_data_list)
 ```
 
-The function will return a data.table named acledEvents
-
 ## Error Handling
 
 This is a simple function that has no error handling. All errors I have received when using this function are result of exceeding ACLED's memory limits. In which case I just run it one country at time with a year specified.
