@@ -2,7 +2,7 @@
 
 ## An R function to ingest ACLED event data using jsonlite for ingestion and data.table for processing
 
-Wrap country name with quotes. Normally ACLED returns only 500 records per request.
+Wrap the country name with quotes. Normally ACLED returns only 500 records per request.
 This function overides that constraint and returns all records matching your country and year parameters.
 This may occasionally exceed ACLED API memory limits and throw an error.
 If you specify a country and no year, you are requesting all records of that country.
@@ -16,7 +16,29 @@ Required packages: jsonlite, data.table, lubridate, stringr
 
 ### The function: getACLED()
 
-### An example work flow:
+The function takes two arguments, country name and/or year.
+
+```r
+getACLED <- function(country = NULL, year = NULL)
+```
+
+### A few simple examples
+
+```r
+# all Nigeria data
+
+myNigeriaData <- getACLED("Nigeria")
+
+# or just one year for Nigeria
+
+my2016NigeriaData <- getACLED("Nigeria", 2016)
+
+# or the latest 10,000 records in the ACLED database
+
+latestAcled <- getACLED()
+```
+
+### A programatic example work flow:
 
 ```r
 source("acled_api_pull.R")
