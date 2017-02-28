@@ -34,14 +34,14 @@ getACLED <- function(country = NULL, year = NULL) {
   
   # check user argument parameters and build api url
   
-  if(country == "NULL" | is.null(country) & is.null(year)) {
+  if(is.null(country) & is.null(year)) {
     myurl <- "http://acleddata.com/api/acled/read?&limit=10000"
   } else if (!is.null(country) & is.null(year)) {
-    myurl <- paste0(myurl, "&country=", country, "&limit=0")
+    myurl <- paste0(myurl, "&country=", country, "&country_where=%3D", "&limit=0")
   } else if (is.null(country) & !is.null(year)) {
     myurl <- paste0(myurl, "&year=", year, "&limit=0")
   } else {
-    myurl <- paste0(myurl, "&country=", country, "&year=", year, "&limit=0")
+    myurl <- paste0(myurl, "&country=", country, "&country_where=%3D", "&year=", year, "&limit=0")
   }
   
   # print resulting api url so user can see it in console
