@@ -27,15 +27,16 @@ getACLED <- function(country = NULL, year = NULL) {
   library(data.table)
   library(lubridate)
   library(stringr)
+  library(ggplot2)
   
   # the base url for the api, your argument parameters will build on this
   
-  myurl <- "http://acleddata.com/api/acled/read?"
+  myurl <- "https://api.acleddata.com/acled/read?"
   
   # check user argument parameters and build api url
   
   if(is.null(country) & is.null(year)) {
-    myurl <- "http://acleddata.com/api/acled/read?&limit=10000"
+    myurl <- "https://api.acleddata.com/acled/read?&limit=10000"
   } else if (!is.null(country) & is.null(year)) {
     myurl <- paste0(myurl, "&country=", country, "&country_where=%3D", "&limit=0")
   } else if (is.null(country) & !is.null(year)) {
