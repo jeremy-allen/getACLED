@@ -33,21 +33,24 @@ getACLED <- function(country = NULL, year = NULL) {
   
   myurl <- "https://api.acleddata.com/acled/read?"
   
-  # check user argument parameters and build api url
+  # check user argument parameters and build uri endpoint
   
-  if(is.null(country) & is.null(year)) {
+  # first replace spaces
+  country2 <- str_replace_all(country, " ", "%20")
+  
+  if(is.null(country2) & is.null(year)) {
     myurl <- "https://api.acleddata.com/acled/read?&limit=10000"
-  } else if (!is.null(country) & is.null(year)) {
-    myurl <- paste0(myurl, "&country=", country, "&country_where=%3D", "&limit=0")
-  } else if (is.null(country) & !is.null(year)) {
+  } else if (!is.null(country2) & is.null(year)) {
+    myurl <- paste0(myurl, "&country=", country2, "&country_where=%3D", "&limit=0")
+  } else if (is.null(country2) & !is.null(year)) {
     myurl <- paste0(myurl, "&year=", year, "&limit=0")
   } else {
-    myurl <- paste0(myurl, "&country=", country, "&country_where=%3D", "&year=", year, "&limit=0")
+    myurl <- paste0(myurl, "&country=", country2, "&country_where=%3D", "&year=", year, "&limit=0")
   }
   
   # print resulting api url so user can see it in console
   
-  message(paste0("your api url was ", myurl))
+  message(paste0("the uri for ", country, " was ", myurl))
   
   # go get the data! the api returns a list
   
